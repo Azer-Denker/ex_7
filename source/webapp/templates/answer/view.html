@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Answers{% endblock %}
+
+{% block content %}
+    <h1>Poll:</h1>
+
+        <p><b>{{ poll }}</b></p>
+        <form action="{% url 'answers_view' poll.pk %}" method="post">
+            {% csrf_token %}
+            {% for choice in poll.polls_choice.all %}
+                <label>
+                    <p>
+                        <input type="radio" name="choice" value={{ choice.pk }}>
+                        <div class="pre">{{ choice }}</div>
+                </label>
+
+            {% endfor %}
+            <p><input type="submit" value="Submit"></p>
+        </form>
+    <hr/>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}
