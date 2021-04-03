@@ -23,7 +23,7 @@ class ChoiceCreateView(CreateView):
         poll = get_object_or_404(Poll, pk=self.kwargs.get('pk'))
         choice = form.save(commit=False)
         choice.poll = poll
-        poll.save()
+        choice.save()
         form.save_m2m()
         return redirect('poll_view', poll.pk)
 
