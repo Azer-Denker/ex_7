@@ -3,7 +3,6 @@
 
 {% block content %}
     <h1>Вопрос: {{ poll }}</h1>
-    var
     <p>Ответы</p>
         <form action="{% url 'answers_view' poll.pk %}" method="post">
             {% csrf_token %}
