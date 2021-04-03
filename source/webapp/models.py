@@ -20,7 +20,7 @@ class Choice(models.Model):
 
 class Answer(models.Model):
     poll = models.ForeignKey('webapp.Poll', related_name='polls_answer',
-                             on_delete=models.PROTECT, null=False, blank=False, verbose_name='Опрос')
+                             on_delete=models.CASCADE, null=False, blank=False, verbose_name='Опрос')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
-    choice = models.ForeignKey('webapp.Choice', related_name='choices_answer', on_delete=models.PROTECT,
+    choice = models.ForeignKey('webapp.Choice', related_name='choices_answer', on_delete=models.CASCADE,
                                null=False, blank=False, verbose_name='Вариант ответа')

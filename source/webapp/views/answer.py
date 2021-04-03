@@ -12,7 +12,6 @@ class AnswerView(View):
     def get(self, request, *args, **kwargs):
         context = {}
         context['poll'] = Poll.objects.get(pk=kwargs['pk'])
-        print(context)
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
