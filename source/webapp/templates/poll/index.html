@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block menu %}
+    <li><a href="{% url 'poll_create' %}">Добавить Опрос</a></li>
+
+{% endblock %}
+{% block content %}
+    <h1 class="mt-3">Опросы</h1>
+    <hr>
+        {% if is_paginated  %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+
+    <div>
+        {% for poll in polls %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="card-body" style="height: 110px;width: 200px;">
+                        <a href="{% url 'poll_view' poll.pk %}"><h2 class="card-text card-link">
+                            {{ poll.question }}
+                        </h2></a>
+                        <li><a href="{% url 'choice_create' poll.pk %}">Добавить ответы</a></li>
+                        <li><a href="{% url 'answers_view' poll.pk %}">Ответы</a></li>
+                        <p class="card-text">{{ poll.get_category_display }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+          {% if is_paginated  %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}
