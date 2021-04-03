@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Update choice{% endblock %}
+
+{% block content %}
+    <h1>Изменить ответ</h1>
+    <form method="POST" action="{% url "choice_update" choice.pk %}">
+        {% include 'partial/form.html' with button_text="изменить" %}
+    </form>
+{% endblock %}
