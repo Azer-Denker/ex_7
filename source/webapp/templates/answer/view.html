@@ -2,14 +2,14 @@
 {% block title %}Answers{% endblock %}
 
 {% block content %}
+    {{ error }}
     <h1>Вопрос: {{ poll }}</h1>
-    <p>Ответы</p>
+    <p>Ответы: </p>
         <form action="{% url 'answers_view' poll.pk %}" method="post">
             {% csrf_token %}
             {% for choice in poll.polls_choice.all %}
-                <label>
-                        <input type="radio" name="choice" value={{ choice.pk }}>
-                        <div class="pre">{{ choice }}</div>
+                <label style="padding-right: 100%;width: 1050px;">
+                    <p><input type="radio" name="choice" value={{ choice.pk }}>{{ choice }}</p>
                 </label>
             {% endfor %}
 

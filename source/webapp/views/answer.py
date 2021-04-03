@@ -15,8 +15,13 @@ class AnswerView(View):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
+        context = {}
         poll = Poll.objects.get(pk=kwargs['pk'])
-        choice = Choice.objects.get(pk=request.POST.get('choice'))
-
+        try:
+            choice = Choice.objects.get(pk=request.POST.get('choice'))
+        except:
+            context['error'] = 'Ответ не должен быть пустым!'
+            context['poll'] = poll
+            return render(request, self.template_name, context=context)
         Answer.objects.create(poll=poll, choice=choice)
         return redirect('index')
